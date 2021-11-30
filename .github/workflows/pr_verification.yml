@@ -48,3 +48,14 @@ jobs:
       with:
         name: Screenshots-${{ github.run_number }}
         path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots
+        
+        
+        
+    - name: Build NuGets
+      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahappsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
+
+    - name: Upload NuGets
+      uses: actions/upload-artifact@v2
+      with:
+        name: NuGets-${{ github.run_number }}
+        path: "*.nupkg"
