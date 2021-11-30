@@ -43,24 +43,6 @@
                                             <RotateTransform x:Name="RotateTransform"></RotateTransform>
                                         </wpf:Ripple.RenderTransform>
                                     </wpf:Ripple>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Click">
-                                            <EventTrigger.Actions>
-                                                <BeginStoryboard>
-                                                    <Storyboard TargetName="RotateTransform" TargetProperty="Angle">
-                                                        <DoubleAnimationUsingKeyFrames>
-                                                            <SplineDoubleKeyFrame KeyTime="0" Value="0" />
-                                                            <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="360">
-                                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                                    <SineEase EasingMode="EaseInOut" />
-                                                                </EasingDoubleKeyFrame.EasingFunction>
-                                                            </EasingDoubleKeyFrame>
-                                                        </DoubleAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger.Actions>
-                                        </EventTrigger>
-                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
