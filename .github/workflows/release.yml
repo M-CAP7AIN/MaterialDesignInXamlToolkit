@@ -25,15 +25,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "3.1.x"
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
 
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "5.x"
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.PAT}}
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.solution }}
@@ -65,6 +61,3 @@ jobs:
       with:
         name: DemoApp-${{ github.run_number }}
         path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
-
-    - name: Publish to NuGet.org
-      run: dotnet nuget push ${{ github.workspace }}\*.nupkg --source https://api.nuget.org/v3/index.json -k ${{ secrets.PAT }} --skip-duplicate
