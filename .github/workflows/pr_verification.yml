@@ -38,10 +38,7 @@ jobs:
 
     - name: Build
       run: dotnet build ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-restore -p:Platform="${{ env.buildPlatform }}" -p:TreatWarningsAsErrors=True
-
-    - name: Test
-      run: dotnet test ${{ env.solution }} --configuration ${{ env.buildConfiguration }} --no-build --verbosity detailed --blame-crash
-
+      
     - name: Upload Screenshots
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
@@ -49,13 +46,9 @@ jobs:
         name: Screenshots-${{ github.run_number }}
         path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ env.buildConfiguration }}/net5.0-windows/Screenshots
         
-        
-        
-    - name: Build NuGets
-      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahappsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
 
     - name: Upload NuGets
       uses: actions/upload-artifact@v2
       with:
         name: NuGets-${{ github.run_number }}
-        path: "*.nupkg"
+        path: ${{ github.workspace }}/MaterialDesignThemes.Wpf/bin/${{ env.buildConfiguration }}
